@@ -37,6 +37,10 @@ variable "ebs_az" {
 #  }
 }
 
+variable "publickey" {
+  type = string
+  default = "~/Documents/awskeys/AWSUSNVirginia.pem"
+}
 
 #    condition     = can(regex("^(?\d+\.*", var.instance_type))
 # can(regex(("^inf1" or "^t[23]" or "^m[4-6]" or "^a1" or "^c[4-6]" or "^r[45]" or "^f1" or "^g[2-4]" or "^p[23]" or "^x1" or "^z1" or "^d2" or "^i2" or "^h1" or "^i3") && ("?" or "a" or "ad" or "g" or "gd" or "d" or "dn" or "e" or "en" or "n") && "\." && ("?" or "2" or "4" or "8" or "16" or "32" or "64" or "128" or "256") && ("nano" or "micro$" or "small$" or "medium$" or "large$" or "xlarge$" or "metal$") , var.ins))

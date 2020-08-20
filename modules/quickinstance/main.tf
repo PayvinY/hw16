@@ -24,11 +24,16 @@ resource "aws_volume_attachment" "ebs_att" {
 resource "aws_ebs_volume" "ebs" {
   availability_zone = var.ebs_az
   size = var.ebs_volume_size
-#  tags = {
-#    Name = "EBS volume for hillel labwork"
-#    value = "Default size 8gb"
-#  }
+  tags = {
+    Name = "EBS volume for hillel labwork"
+    value = "Default size 8gb"
+  }
 }
+
+resource "aws_key_pair" "payvinhillel" {
+  public_key = "${file("~/new2.pub")}"
+}
+
 
 resource "aws_security_group" "that" {
   name_prefix = "trafic 6100 port"
