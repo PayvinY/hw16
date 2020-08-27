@@ -31,7 +31,6 @@ resource "aws_ebs_volume" "ebs" {
 }
 
 resource "aws_key_pair" "payvinhillel" {
-#  public_key = "${file("~/hillel.pem")}"
   key_name   = "hillel"
   public_key = "${file(var.pub_key_path)}"
 }
