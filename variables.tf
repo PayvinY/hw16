@@ -1,5 +1,6 @@
+/*
 variable "ami_id" {
-  type        = string
+#  type        = string
   default     = "ami-0bcc094591f354be2"
   description = "ami ID"
   validation {
@@ -9,24 +10,29 @@ variable "ami_id" {
 }
 
 variable "instance_type" {
-  type        = string
+#  type        = string
   default     = "t2.micro"
   description = "type instance"
-  validation {
-    condition     = can(regex("?????.???????", var.instance_type))
-    error_message = "You need to input valid ami name ..."
-  }
+#  validation {
+#    condition     = can(regex("?????.???????", var.instance_type))
+#    error_message = "You need to input valid ami name ..."
+#  }
+}
+*/
+variable "profile" {
+  default = "payvinroot"
 }
 
-variable "ebs_volume_size" {
-  type        = number
-  default     = "8"
+/*
+#variable "ebs_volume_size" {
+#  type        = number
+#  default     = "8"
 #  description = "size EBS volume"
 #  validation {
 #    condition = var.ebs_volume_size > 1 && var.ebs_volume_size < 16384
 #    error_message = "The size of volume must be from 1Gb to 16384Gb..."
 #  }
-}
+#}
 
 variable "ebs_az" {
   type = string
@@ -50,3 +56,4 @@ variable "publickey" {
 #      one uppercase character, one lowercase character, and one digit. It must
 #      not contain ', ", \, /, @ or spaces. It must not exceed 32 characters in"
 #      length.
+*/

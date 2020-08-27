@@ -2,7 +2,7 @@ resource "aws_instance" "this" {
   ami           = var.ami_id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.this.id,aws_security_group.that.id]
-  key_name = "hillel"
+  key_name = aws_key_pair.payvinhillel.key_name
   tags = {
     Name    = "temporary server"
     Purpose = "education"
@@ -22,7 +22,7 @@ resource "aws_volume_attachment" "ebs_att" {
 }
 
 resource "aws_ebs_volume" "ebs" {
-  availability_zone = var.ebs_az
+  availability_zone = aws_instance.this.availability_zone
   size = var.ebs_volume_size
   tags = {
     Name = "EBS volume for hillel labwork"
@@ -31,7 +31,9 @@ resource "aws_ebs_volume" "ebs" {
 }
 
 resource "aws_key_pair" "payvinhillel" {
-  public_key = "${file("~/new2.pub")}"
+#  public_key = "${file("~/hillel.pem")}"
+  key_name   = "hillel"
+  public_key = "${file(var.pub_key_path)}"
 }
 
 
@@ -39,15 +41,15 @@ resource "aws_security_group" "that" {
   name_prefix = "trafic 6100 port"
   ingress {
     description = "Allow TCP port 6100 in trafic"
-    from_port = 6100
-    to_port = 6100
+    from_port = 61001
+    to_port = 61001
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
     description = "Allow TCP port 6100 out trafic"
-    from_port = 6100
-    to_port = 6100
+    from_port = 61001
+    to_port = 61001
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
