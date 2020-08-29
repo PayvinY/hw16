@@ -12,10 +12,11 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
   description = "type instance"
-#  validation {
-#    condition     = can(regex("?????.???????", var.instance_type))
-#    error_message = "You need to input valid ami name ..."
-#  }
+  validation {
+#    condition     = can(regex("^\w\d\.(\w+\d+)?:wq(nano|micro|small|medium|large|metal)$", var.instance_type))
+    condition     = can(regex("[tmacrfgpxzdihi][1-6].(nano|micro|small|medium|large|metal)$", var.instance_type))
+    error_message = "You need to input valid ami name ..."
+  }
 }
 
 
