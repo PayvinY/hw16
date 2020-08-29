@@ -12,10 +12,10 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
   description = "type instance"
-#  validation {
-#    condition     = can(regex("??*.????*", var.instance_type))
-#    error_message = "You need to input valid type name ..."
-#  }
+  validation {
+    condition     = can(regex("[tmacrfgpxzdih][1-6].+(nano|micro|small|medium|large|metal)$", var.instance_type))
+    error_message = "You need to input valid ami name ..."
+  }
 }
 
 
@@ -38,3 +38,4 @@ variable "ebs_volume_size" {
 variable "pub_key_path" {
   default = "/home/oem/hillel.pem"
 }
+
